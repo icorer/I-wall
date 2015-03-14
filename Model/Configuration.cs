@@ -23,6 +23,7 @@ namespace Shadowsocks.Model
         public static int i = 0;
         public static string fast_key="";
         public static string key_url = "";
+        public static string json_Data = "";
         private static string CONFIG_FILE = "gui-config.json";
 
         public Server GetCurrentServer()
@@ -50,7 +51,7 @@ namespace Shadowsocks.Model
             {
                  
                 
-                string s="";
+                
                // string a="";
                 if (count_num == 0) //利用变量 杜绝 多次调用输入框
                 {
@@ -60,26 +61,38 @@ namespace Shadowsocks.Model
                         fast_key = "common";
 
                 }
-                
-                    
-                 if (i == 0)
-                 {
-                     WebClient client = new WebClient();
-                     client.Headers.Add("user-agent", "Mozilla/4.0");
+
+
+                if (i == 0)
+                {
+                    if (json_Data == "")
+                    {
+                        WebClient client = new WebClient();
+                        client.Headers.Add("user-agent", "Mozilla/4.0");
+                        key_url = "http://lab.icorer.com/ssconfig/?key=" + fast_key;
+                        Stream data = client.OpenRead(key_url);
+                        StreamReader reader = new StreamReader(data);
+                        json_Data = reader.ReadToEnd();
+                        Console.WriteLine(json_Data);
+                        data.Close();
+                        reader.Close();
+                    }
                      
-                     key_url = "http://lab.icorer.com/ssconfig/?key=" + fast_key;
+                     
+                     
+                     
                      //MessageBox.Show(key_url);
-                     Stream data = client.OpenRead(key_url);
-                     StreamReader reader = new StreamReader(data);
-                     s= reader.ReadToEnd();
-                      Console.WriteLine(s);
-                      data.Close();
-                      reader.Close();
+                     
+                     
+                     
+                      
+                      
+                      
 
                  }
                  
 
-                string configContent = s;
+                string configContent = json_Data;
                 Configuration config = SimpleJson.SimpleJson.DeserializeObject<Configuration>(configContent, new JsonSerializerStrategy());
                 config.isDefault = false;
                 if (config.localPort == 0)
