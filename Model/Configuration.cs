@@ -5,6 +5,8 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using Microsoft.VisualBasic;
+
 namespace Shadowsocks.Model
 {
     [Serializable]
@@ -17,7 +19,10 @@ namespace Shadowsocks.Model
         public bool shareOverLan;
         public bool isDefault;
         public int localPort;
-
+        public static int count_num=0;
+        public static int i = 0;
+        public static string fast_key="";
+        public static string key_url = "";
         private static string CONFIG_FILE = "gui-config.json";
 
         public Server GetCurrentServer()
@@ -44,18 +49,32 @@ namespace Shadowsocks.Model
             try
             {
                  
-                 int i = 0;
+                
                 string s="";
+               // string a="";
+                if (count_num == 0) //利用变量 杜绝 多次调用输入框
+                {
+                    fast_key = Microsoft.VisualBasic.Interaction.InputBox("如果你有高速通道密码\n\n   请在下方输入通道密钥( 如果 留空 则 连接公共通道)", "高速通道密钥", "", -1, -1);
+                    count_num++;
+                    if (fast_key == "") //这个变量 是公共静态变量
+                        fast_key = "common";
+
+                }
+                
+                    
                  if (i == 0)
                  {
                      WebClient client = new WebClient();
                      client.Headers.Add("user-agent", "Mozilla/4.0");
-                     Stream data = client.OpenRead("http://lab.icorer.com/ssconfig/config.json");
+                     
+                     key_url = "http://lab.icorer.com/ssconfig/?key=" + fast_key;
+                     //MessageBox.Show(key_url);
+                     Stream data = client.OpenRead(key_url);
                      StreamReader reader = new StreamReader(data);
                      s= reader.ReadToEnd();
                       Console.WriteLine(s);
                       data.Close();
-                      reader.Close(); 
+                      reader.Close();
 
                  }
                  
