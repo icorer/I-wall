@@ -1,0 +1,9 @@
+D:\Git\I-wall\obj\x64\Release\Shadowsocks.View.ConfigForm.resources
+D:\Git\I-wall\obj\x64\Release\Shadowsocks.Properties.Resources.resources
+D:\Git\I-wall\obj\x64\Release\Shadowsocks.View.QRCodeForm.resources
+D:\Git\I-wall\obj\x64\Release\shadowsocks-csharp.csproj.GenerateResource.Cache
+D:\Git\I-wall\bin\x64\Release\I-WALL.exe.config
+D:\Git\I-wall\bin\x64\Release\I-WALL.exe
+D:\Git\I-wall\bin\x64\Release\I-WALL.pdb
+D:\Git\I-wall\obj\x64\Release\I-WALL.exe
+D:\Git\I-wall\obj\x64\Release\I-WALL.pdb
