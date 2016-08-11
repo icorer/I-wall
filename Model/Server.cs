@@ -39,7 +39,7 @@ namespace Shadowsocks.Model
         {
 
             this.server = "";
-            this.server_port = 1008;
+            this.server_port = 2443;
             this.method = "aes-256-cfb";
             this.password = "";
             this.remarks = "";

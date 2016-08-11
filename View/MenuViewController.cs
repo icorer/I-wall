@@ -313,7 +313,7 @@ namespace Shadowsocks.View
 
         private void AboutItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://blog.icorer.com");
+            Process.Start("http://doc.icorer.com/kai-yuan-i-wall-ke-xue-shang-wang-xiang-mu/");
         }
 
         private void notifyIcon1_DoubleClick(object sender, MouseEventArgs e)
